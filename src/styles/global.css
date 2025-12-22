@@ -1,0 +1,18 @@
+@import "tailwindcss";
+@import "@fontsource/manrope";
+@import "@fontsource/manrope/500.css";
+@import "@fontsource/manrope/600.css";
+@import "@fontsource/manrope/700.css";
+
+:root {
+  --font-sans: "Manrope", system-ui, -apple-system, BlinkMacSystemFont,
+    sans-serif;
+}
+
+@theme {
+  --color-background: #000714;
+}
+
+body {
+  font-family: var(--font-sans);
+}
