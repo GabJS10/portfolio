@@ -11,8 +11,42 @@
 
 @theme {
   --color-background: #000714;
+  --color-accent: #3b82f6;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      clip-path: inset(45% 20% 45% 20%);
+    }
+    to {
+      opacity: 1;
+      clip-path: inset(0% 0% 0% 0%);
+    }
+  }
+
+  --animation-fade-up: fade-up 0.8s ease-out forwards;
+  --animation-reveal: reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
 }
 
 body {
   font-family: var(--font-sans);
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+}
+
+.reveal-on-scroll.visible {
+  animation: var(--animation-fade-up);
 }

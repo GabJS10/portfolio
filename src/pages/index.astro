@@ -1,11 +1,165 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro';
+import SocialLink from '@/components/SocialLink.astro';
+import { Image } from 'astro:assets';
+import Foto from '@/assets/foto.jpeg';
+import ProjectCard from '@components/ProjectCard.astro';
+import corprecam_img from '@/assets/projects/corprecam_img.png';
+import playwright from '@/assets/projects/playwright.png';
+import chatapp from '@/assets/projects/chatapp.png';
+import rag from '@/assets/projects/rag.png';
+// Puedes cambiar estos datos por los tuyos reales
+const navItems = [
+  { name: "Proyectos", href: "#proyectos" },
+  { name: "CV", href: "https://docs.google.com/document/d/1vu8gdBwmTMrEOw6-LLB_cJsss8ugJ0rj/edit#heading=h.ynibmqq0a5qj", props: { target: "_blank", rel: "noopener noreferrer" } },
+];
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const projectsData = [
+  {
+    title: "Corprecam web",
+    description: "Pagina web de la organizacion Corprecam E.S.P. Creada con astro + tailwindcss. Cuenta con secciones de informacion, servicios, documentos y contacto.",
+    image: corprecam_img.src, // Reemplaza con tus imágenes reales
+		url:"https://github.com/GabJS10/corprecam-web",
+    technologies: ["astro", "typescript"],
+  },
+  {
+    title: "Scrapping Siigo-Corprecam",
+    description: "Script de scrapping desarrollado en NodeJS para extraer informacion del sistema de la organizacion y crear Documentos soporte para Siigo.",
+    image: playwright.src, // Reemplaza con tus imágenes reales
+		url:"https://github.com/GabJS10/ScrappingSiigoCorprecam",
+    technologies: ["typescript", "nodejs", "express"],
+  },
+    {
+    title: "Chat App",
+    description: "ChatExpress es una aplicación de chat temporal desarrollada con React, Express y Socket.io. Permite enviar mensajes de texto y compartir imágenes, y todos los mensajes se eliminan al cerrar la sesión.",
+		url:"https://github.com/GabJS10/ChatApp",
+		image: chatapp.src, // Reemplaza con tus imágenes reales
+    technologies: ["react", "typescript", "tailwind","nestjs","redis"],
+  },
+    {
+    title: "Sistema RAG",
+    description: "Backend de preguntas y respuestas con RAG, desarrollado en FastAPI, que permite subir documentos, indexarlos y realizar consultas conversacionales sobre su contenido. Usa Supabase para almacenamiento, Redis Queue (RQ) para procesamiento en segundo plano y OpenAI para generación de respuestas, con un diseño escalable, no bloqueante y orientado a producción.",
+		url:"https://github.com/GabJS10/RAGSystem",
+		image: rag.src, // Reemplaza con tus imágenes reales
+    technologies: ["python", "fastapi", "docker","redis"],
+  },
+];
 ---
+<Layout title="Gabriel Ballesteros | Portfolio">
+	<header class="fixed top-0 w-full z-50 backdrop-blur-md border-b border-white/5 bg-background/50">
+		<nav class="max-w-5xl mx-auto px-6 py-4 flex justify-between">
+			<a href="/" class="text-xl font-bold tracking-tighter hover:text-blue-400 transition-colors">
+				GabJS10
+			</a>
+			
+			<ul class="flex gap-6 text-sm font-medium text-gray-300">
+				{navItems.map(item => (
+					<li>
+						<a {...item.props} href={item.href} class="hover:text-white transition-colors">
+							{item.name} 
+						</a>
+					</li>
+				))}
+			</ul>
+		</nav>
+	</header>
 
-<Layout>
-	<h1 class="text-9xl ">Astro Basics</h1>
+	<main class="min-h-screen flex flex-col items-center justify-center pt-24 px-4 relative">
+		
+		<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-blue-500/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+
+		<div class="flex flex-col items-center text-center gap-8 max-w-2xl animate-fade-in-up">
+			
+			<h1 class="text-3xl md:text-5xl font-extrabold tracking-tight animate-[fade-up_0.8s_ease-out_forwards]">
+				<span class="text-gray-400 font-medium text-xl mb-5 md:text-2xl block mb-2">Mi nombre es</span>
+				Gabriel Ballesteros
+			</h1>
+
+			<div class="relative group">
+				<div class="absolute -inset-1 bg-linear-to-r from-blue-600 to-cyan-600 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200 animate-[fade-up_0.8s_ease-out_0.2s_forwards]"></div>
+				<Image 
+					src={Foto} 
+					alt="Gabriel Ballesteros" 
+					class="relative w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-transparent shadow-2xl"
+				/>
+			</div>
+
+			<h2 class="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-cyan-300 animate-[fade-up_0.8s_ease-out_0.4s_forwards]">
+				Ingeniero de Sistemas & <br class="md:hidden" /> Desarrollador Web
+			</h2>
+
+			<div class="border border-white/10 bg-white/5 p-6 md:p-8 rounded-2xl backdrop-blur-sm text-gray-300 leading-relaxed text-sm md:text-base shadow-xl animate-[fade-up_0.8s_ease-out_0.6s_forwards]">
+				<p>
+					¡Hola! Soy un apasionado por la tecnología y la creación de soluciones digitales. 
+					Me especializo en transformar ideas complejas en interfaces elegantes y funcionales. 
+					Actualmente estoy enfocado en el ecosistema de JavaScript, construyendo aplicaciones 
+					escalables y de alto rendimiento.
+				</p>
+			</div>
+
+			<div class="flex gap-6 mt-4">
+				<SocialLink href="https://github.com/GabJS10" label="GitHub">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36.5-8 3a10.88 10.88 0 0 0-6 0c-2.64-2.5-5.36-3.5-8-3C.5 4.5.5 6.5.5 9c-.28 1.15-.28 2.35 0 3.5A5.403 5.403 0 0 0 4 18c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+				</SocialLink>
+				<SocialLink href="https://www.linkedin.com/in/gabriel-ballesteros-3114b916a/" label="LinkedIn">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+				</SocialLink>
+				<SocialLink href="mailto:jgabis65@gmail.com" label="mail">
+					<svg class="size-4 md:size-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M11 19h-6a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v6"></path><path d="M3 7l9 6l9 -6"></path><path d="M15 19l2 2l4 -4"></path></svg>
+				</SocialLink>
+			</div>
+		</div>
+		<section id="proyectos" class="py-28 px-28 relative">
+            <div class="max-w-5xl mx-auto mb-24 text-center space-y-4">
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+                    Mis proyectos
+                </h2>
+                <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+                    Una selección de mis trabajos recientes, donde combino backend y frontend.
+                </p>
+            </div>
+
+            <div class="max-w-6xl mx-auto flex flex-col gap-32">
+                {projectsData.map((project, index) => (
+                    /* Usamos el componente ProjectCard.
+                       La magia del zigzag está en `reverse={index % 2 !== 0}`.
+                       Si el índice es impar (1, 3, 5...), reverse será true.
+                    */
+        				<div class="reveal-on-scroll">       
+										<ProjectCard 
+                        title={project.title}
+                        description={project.description}
+                        image={project.image}
+						url={project.url}
+                        technologies={project.technologies}
+                        reverse={index % 2 !== 0} 
+                    />
+								</div>
+
+                ))}
+            </div>
+        </section>
+	<footer class="mb-18">
+    <p class="text-center text-xl font-bold text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-white to-cyan-300 bg-[length:200%_auto] animate-[pulse_3s_infinite] opacity-80">
+        Gracias por tu visita
+    </p>
+</footer>	
+
+	</main>
 </Layout>
+
+<script>
+  const observerOptions = {
+    threshold: 0.1, // Se activa cuando el 10% del elemento es visible
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal-on-scroll').forEach((el) => observer.observe(el));
+</script>
