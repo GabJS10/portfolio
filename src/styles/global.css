@@ -8,6 +8,9 @@
   --font-sans: "Manrope", system-ui, -apple-system, BlinkMacSystemFont,
     sans-serif;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 @theme {
   --color-background: #000714;
