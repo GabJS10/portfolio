@@ -1,0 +1,38 @@
+[
+  {
+    "id": "corprecam-web",
+    "date": "Dec 22, 2025",
+    "title": "Corprecam web",
+    "description": "Pagina web de la organizacion Corprecam E.S.P. Creada con astro + tailwindcss. Cuenta con secciones de informacion, servicios, documentos y contacto.",
+    "image": "/src/assets/projects/corprecam_img.png",
+    "link": "https://github.com/GabJS10/corprecam-web",
+    "technologies": ["astro", "typescript"]
+  },
+  {
+    "id": "scrapping-siigo",
+    "date": "Dec 15, 2025",
+    "title": "Scrapping Siigo-Corprecam",
+    "description": "Script de scrapping desarrollado en NodeJS para extraer informacion del sistema de la organizacion y crear Documentos soporte para Siigo.",
+    "image": "/src/assets/projects/playwright.png",
+    "link": "https://github.com/GabJS10/ScrappingSiigoCorprecam",
+    "technologies": ["typescript", "nodejs", "express"]
+  },
+  {
+    "id": "chat-app",
+    "date": "Jul 8, 2024",
+    "title": "Chat App",
+    "description": "ChatExpress es una aplicación de chat temporal desarrollada con React, Express y Socket.io. Permite enviar mensajes de texto y compartir imágenes, y todos los mensajes se eliminan al cerrar la sesión.",
+    "link": "https://github.com/GabJS10/ChatApp",
+    "image": "/src/assets/projects/chatapp.png",
+    "technologies": ["react", "typescript", "tailwind", "nestjs", "redis"]
+  },
+  {
+    "id": "rag-system",
+    "title": "RAG System",
+    "date": "Aug 14, 2025",
+    "description": "Backend de preguntas y respuestas con RAG, desarrollado en FastAPI, que permite subir documentos, indexarlos y realizar consultas conversacionales sobre su contenido. Usa Supabase para almacenamiento, Redis Queue (RQ) para procesamiento en segundo plano y OpenAI para generación de respuestas, con un diseño escalable, no bloqueante y orientado a producción.",
+    "link": "https://github.com/GabJS10/RAGSystem",
+    "image": "/src/assets/projects/rag.png",
+    "technologies": ["python", "fastapi", "docker", "redis"]
+  }
+]
