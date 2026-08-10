@@ -6,7 +6,7 @@
     "description": "Un espacio para leer la Biblia según la traducción del Mons. Juan Straubinger, con sus comentarios y notas originales, pensado para la lectura diaria. Creada con Astro.",
     "image": "/images/biblia-mons-straunbinger.png",
     "link": "https://biblia-mons-straunbinger-web.vercel.app/",
-    "technologies": ["astro", "javascript", ""]
+    "technologies": ["astro", "javascript"]
   },
   {
     "id": "corprecam-web",
