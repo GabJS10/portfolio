@@ -1,55 +1,160 @@
 @import "tailwindcss";
+
+/* Body */
 @import "@fontsource/manrope";
 @import "@fontsource/manrope/500.css";
-@import "@fontsource/manrope/600.css";
-@import "@fontsource/manrope/700.css";
 
-:root {
-  --font-sans: "Manrope", system-ui, -apple-system, BlinkMacSystemFont,
-    sans-serif;
-}
-html {
-  scroll-behavior: smooth;
-}
+/* Display */
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/700.css";
+
+/* Mono / utility */
+@import "@fontsource/ibm-plex-mono";
+@import "@fontsource/ibm-plex-mono/500.css";
 
 @theme {
-  --color-background: #000714;
-  --color-accent: #3b82f6;
+  /* --- Paleta: panel de instrumento / CRT ámbar --- */
+  --color-ink: #0a0c10;
+  --color-panel: #13161d;
+  --color-line: rgba(255, 255, 255, 0.09);
+  --color-text: #e7e9ee;
+  --color-muted: #868d99;
+  --color-accent: #ffb454;
 
-  @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* Alias para compatibilidad con clases previas */
+  --color-background: #0a0c10;
+
+  /* --- Tipografía (3 roles) --- */
+  --font-sans: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "Space Grotesk", "Manrope", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Keyframes en CSS plano (fuera de @theme) para que Tailwind v4 no los
+   elimine por tree-shaking al no usarse vía utilidades animate-*. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-
-  @keyframes reveal {
-    from {
-      opacity: 0;
-      clip-path: inset(45% 20% 45% 20%);
-    }
-    to {
-      opacity: 1;
-      clip-path: inset(0% 0% 0% 0%);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  --animation-fade-up: fade-up 0.8s ease-out forwards;
-  --animation-reveal: reveal 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(255, 180, 84, 0.5);
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 0 4px rgba(255, 180, 84, 0);
+  }
+}
+
+:root {
+  --font-sans: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --animation-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-sans);
 }
 
+/* Retícula blueprint tenue, compartida por fondo y utilidades */
+.blueprint-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Cursor tipo terminal */
+.caret::after {
+  content: "";
+  display: inline-block;
+  width: 0.6ch;
+  height: 1em;
+  margin-left: 0.15ch;
+  translate: 0 0.12em;
+  background: var(--color-accent);
+  animation: blink 1.1s steps(1) infinite;
+}
+
+/* Punto de estado latente */
+.status-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+/* Reveals de scroll */
 .reveal-on-scroll {
   opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .reveal-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Secuencia de carga escalonada del hero (fill-mode both -> sin flash) */
+.load-seq > * {
+  opacity: 0;
   animation: var(--animation-fade-up);
+}
+.load-seq > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.load-seq > *:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.load-seq > *:nth-child(3) {
+  animation-delay: 0.25s;
+}
+.load-seq > *:nth-child(4) {
+  animation-delay: 0.35s;
+}
+.load-seq > *:nth-child(5) {
+  animation-delay: 0.45s;
+}
+.load-seq > *:nth-child(6) {
+  animation-delay: 0.55s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .load-seq > *,
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
