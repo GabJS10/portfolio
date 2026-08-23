@@ -9,6 +9,30 @@
     "technologies": ["astro", "javascript"]
   },
   {
+    "id": "rutas-web-corprecam",
+    "date": "Ago 20, 2026",
+    "title": "Rutas Web Corprecam",
+    "description": "Una web para que posibles clientes y ciudadanía vean en un mapa por dónde circulan los recicladores de Corprecam: los recorridos (microrutas) coloreados por zona (macroruta), con sus días, horarios y las personas que los recorren. Incluye un panel admin autenticado para crear y mantener esos datos dibujando las rutas directamente sobre el mapa.",
+    "image": "/images/rutas-web-corprecam.png",
+    "link": "https://rutas-corprecam-web.vercel.app/",
+    "technologies": [
+      "typescript",
+      "react",
+      "tailwindcss",
+      "leaflet",
+      "supabase"
+    ]
+  },
+  {
+    "id": "rag-system",
+    "title": "RAG System",
+    "date": "Aug 14, 2025",
+    "description": "Backend de preguntas y respuestas con RAG, desarrollado en FastAPI, que permite subir documentos, indexarlos y realizar consultas conversacionales sobre su contenido. Usa Supabase para almacenamiento, Redis Queue (RQ) para procesamiento en segundo plano y OpenAI para generación de respuestas, con un diseño escalable, no bloqueante y orientado a producción.",
+    "link": "https://github.com/GabJS10/RAGSystem",
+    "image": "/images/rag.png",
+    "technologies": ["python", "fastapi", "docker", "redis"]
+  },
+  {
     "id": "corprecam-web",
     "date": "Dec 22, 2025",
     "title": "Corprecam web",
@@ -34,14 +58,5 @@
     "link": "https://github.com/GabJS10/ChatApp",
     "image": "/images/chatapp.png",
     "technologies": ["react", "typescript", "tailwind", "nestjs", "redis"]
-  },
-  {
-    "id": "rag-system",
-    "title": "RAG System",
-    "date": "Aug 14, 2025",
-    "description": "Backend de preguntas y respuestas con RAG, desarrollado en FastAPI, que permite subir documentos, indexarlos y realizar consultas conversacionales sobre su contenido. Usa Supabase para almacenamiento, Redis Queue (RQ) para procesamiento en segundo plano y OpenAI para generación de respuestas, con un diseño escalable, no bloqueante y orientado a producción.",
-    "link": "https://github.com/GabJS10/RAGSystem",
-    "image": "/images/rag.png",
-    "technologies": ["python", "fastapi", "docker", "redis"]
   }
 ]
