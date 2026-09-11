@@ -1,5 +1,22 @@
 [
   {
+    "id": "content-creation-ia",
+    "title": "Content Creation IA",
+    "date": "April 20, 2025",
+    "description": "Plataforma de creación de contenido asistida por inteligencia artificial. Genera blogs, carruseles de Instagram y guiones de video a partir de ideas, usando fuentes de conocimiento propias (PDFs) y perfiles de voz personalizados.",
+    "link": "https://app-production-66be.up.railway.app/",
+    "image": "/images/content-creation-ia.png",
+    "technologies": [
+      "typescript",
+      "nodejs",
+      "neon",
+      "redis",
+      "docker",
+      "react",
+      "tailwindcss"
+    ]
+  },
+  {
     "id": "biblia-mons-straunbinger",
     "date": "Ago 09, 2026",
     "title": "Biblia mons. Straunbinger Web",
@@ -38,7 +55,7 @@
     "title": "Corprecam web",
     "description": "Pagina web de la organizacion Corprecam E.S.P. Creada con astro + tailwindcss. Cuenta con secciones de informacion, servicios, documentos y contacto.",
     "image": "/images/corprecam_img.png",
-    "link": "https://github.com/GabJS10/corprecam-web",
+    "link": "https://corprecam-prueba.netlify.app/",
     "technologies": ["astro", "typescript"]
   },
   {
