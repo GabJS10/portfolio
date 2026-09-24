@@ -61,26 +61,38 @@ const projects = await getCollection("projects");
 		>
 			<a
 				href="/"
-				class="font-mono text-sm font-medium tracking-tight text-text transition-colors hover:text-accent"
+				class="font-mono text-sm font-medium tracking-tight text-text"
 			>
-				GAB<span class="text-accent">JS</span>10
+				GAB<span class="text-gradient">JS</span>10
 			</a>
 
 			<ul
-				class="flex gap-4 font-mono text-xs tracking-wide text-muted md:gap-7 md:text-[13px]"
+				class="flex items-center gap-3 font-mono text-[11px] tracking-wide text-muted md:gap-1 md:rounded-full md:border md:border-line md:bg-white/[0.04] md:p-1 md:text-[13px]"
 			>
 				{
-					navItems.map((item) => (
-						<li>
-							<a
-								{...item.props}
-								href={item.href}
-								class="transition-colors hover:text-accent"
-							>
-								{item.name}
-							</a>
-						</li>
-					))
+					navItems.map((item) =>
+						item.name === "CV" ? (
+							<li>
+								<a
+									{...item.props}
+									href={item.href}
+									class="accent-gradient inline-block rounded-full px-3.5 py-1.5 font-semibold text-ink transition-opacity hover:opacity-90"
+								>
+									{item.name}
+								</a>
+							</li>
+						) : (
+							<li>
+								<a
+									{...item.props}
+									href={item.href}
+									class="inline-block rounded-full transition-colors hover:text-text md:px-3.5 md:py-1.5"
+								>
+									{item.name}
+								</a>
+							</li>
+						),
+					)
 				}
 			</ul>
 		</nav>
@@ -102,7 +114,7 @@ const projects = await getCollection("projects");
 					<h1
 						class="font-display text-4xl font-bold leading-[1.05] tracking-tight text-text sm:text-5xl md:text-6xl"
 					>
-						Gabriel<br />Ballesteros
+						Gabriel<br /><span class="text-gradient">Ballesteros</span>
 					</h1>
 
 					<p class="max-w-lg text-base leading-relaxed text-muted md:text-lg">
@@ -132,35 +144,42 @@ const projects = await getCollection("projects");
 				<div class="flex justify-center md:justify-end">
 					<div class="relative">
 						<div
-							class="absolute -right-2 -top-2 h-6 w-6 border-r-2 border-t-2 border-accent"
+							class="absolute -right-2 -top-2 h-6 w-6 border-r-2 border-t-2 border-accent2"
 						>
 						</div>
 						<div
 							class="absolute -bottom-2 -left-2 h-6 w-6 border-b-2 border-l-2 border-accent"
 						>
 						</div>
-						<Image
-							src={Foto}
-							alt="Gabriel Ballesteros"
-							class="relative h-44 w-44 rounded-xl border border-line object-cover md:h-56 md:w-56"
-						/>
+						<div class="relative h-44 w-44 md:h-56 md:w-56">
+							<div
+								class="accent-gradient absolute -inset-px rounded-xl opacity-50 blur-[3px]"
+								aria-hidden="true"
+							>
+							</div>
+							<Image
+								src={Foto}
+								alt="Gabriel Ballesteros"
+								class="relative h-full w-full rounded-xl border border-line object-cover"
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
 
 			<!-- Signature: system readout -->
 			<dl
-				class="reveal-on-scroll mt-16 grid grid-cols-2 divide-line rounded-xl border border-line bg-panel/40 font-mono text-xs md:grid-cols-4 md:divide-x"
+				class="reveal-on-scroll mt-16 grid grid-cols-2 gap-4 font-mono text-xs md:grid-cols-4"
 			>
 				{
-					readout.map((r, i) => (
+					readout.map((r) => (
 						<div
-							class={`flex flex-col gap-1 px-5 py-4 ${i < 2 ? "border-b border-line md:border-b-0" : ""} ${i % 2 === 1 ? "border-l border-line md:border-l-0" : ""}`}
+							class={`flex flex-col gap-2 rounded-2xl border p-5 ${r.label === "STATUS" ? "border-accent2/40 bg-gradient-to-br from-accent/15 to-accent2/10" : "border-line bg-white/[0.04]"}`}
 						>
 							<dt class="tracking-widest text-muted">{r.label}</dt>
 							<dd class="flex items-center gap-2 text-text">
 								{r.label === "STATUS" && (
-									<span class="status-dot inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+									<span class="status-dot inline-block h-1.5 w-1.5 rounded-full bg-accent2" />
 								)}
 								{r.value}
 							</dd>
@@ -189,7 +208,7 @@ const projects = await getCollection("projects");
 						rápido y convierto ideas en software funcional.
 					</p>
 				</div>
-				<dl class="space-y-0 divide-y divide-line rounded-xl border border-line bg-panel/40">
+				<dl class="space-y-0 divide-y divide-line rounded-2xl border border-line bg-white/[0.04]">
 					{
 						facts.map((f) => (
 							<div class="flex items-center justify-between gap-4 px-5 py-3.5 font-mono text-xs">
@@ -213,8 +232,8 @@ const projects = await getCollection("projects");
 			<div class="mt-10 grid gap-6 md:grid-cols-3">
 				{
 					stackGroups.map((group) => (
-						<div class="reveal-on-scroll rounded-xl border border-line bg-panel/40 p-6">
-							<p class="mb-5 font-mono text-xs tracking-widest text-accent">
+						<div class="reveal-on-scroll rounded-2xl border border-line bg-white/[0.04] p-6">
+							<p class="text-gradient mb-5 font-mono text-xs tracking-widest">
 								{group.label}
 							</p>
 							<ul class="space-y-3.5">
@@ -265,37 +284,41 @@ const projects = await getCollection("projects");
 	<!-- 04 · CONTACTO -->
 	<footer
 		id="contacto"
-		class="mx-auto max-w-5xl scroll-mt-24 border-t border-line px-4 py-20 sm:px-6"
+		class="mx-auto max-w-5xl scroll-mt-24 px-4 py-20 sm:px-6"
 	>
-		<div class="reveal-on-scroll grid gap-10 md:grid-cols-[1.5fr_1fr]">
-			<div class="space-y-5">
-				<div class="flex items-center gap-3 font-mono text-xs tracking-widest text-accent">
-					<span>// 04</span>
-					<span class="h-px w-16 bg-line"></span>
-					<span class="text-muted">CONTACTO</span>
+		<div
+			class="reveal-on-scroll rounded-3xl border border-accent/25 bg-gradient-to-br from-accent/12 to-accent2/[0.08] p-8 md:p-12"
+		>
+			<div class="grid gap-10 md:grid-cols-[1.5fr_1fr]">
+				<div class="space-y-5">
+					<div class="flex items-center gap-3 font-mono text-xs tracking-widest">
+						<span class="text-gradient font-medium">// 04</span>
+						<span class="h-px w-16 bg-line"></span>
+						<span class="text-muted">CONTACTO</span>
+					</div>
+					<h2 class="font-display text-3xl font-bold tracking-tight text-text md:text-4xl">
+						¿Construimos algo?
+					</h2>
+					<p class="max-w-md leading-relaxed text-muted">
+						Estoy disponible para nuevos proyectos y colaboraciones. La mejor vía
+						es el correo, pero también me encuentras en las redes.
+					</p>
+					<a
+						href="mailto:jgabis65@gmail.com"
+						class="accent-gradient inline-flex items-center gap-2 rounded-xl px-5 py-3 font-mono text-sm tracking-wide font-semibold text-ink transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+					>
+						jgabis65@gmail.com
+						<span aria-hidden="true">→</span>
+					</a>
 				</div>
-				<h2 class="font-display text-3xl font-bold tracking-tight text-text md:text-4xl">
-					¿Construimos algo?
-				</h2>
-				<p class="max-w-md leading-relaxed text-muted">
-					Estoy disponible para nuevos proyectos y colaboraciones. La mejor vía
-					es el correo, pero también me encuentras en las redes.
-				</p>
-				<a
-					href="mailto:jgabis65@gmail.com"
-					class="inline-flex items-center gap-2 font-mono text-sm tracking-wide text-accent transition-colors hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-				>
-					jgabis65@gmail.com
-					<span aria-hidden="true">→</span>
-				</a>
+				<nav class="flex flex-col gap-3 font-mono text-sm md:items-end">
+					<a href="https://github.com/GabJS10" target="_blank" rel="noopener noreferrer" class="text-muted transition-colors hover:text-text">GitHub ↗</a>
+					<a href="https://www.linkedin.com/in/gabriel-ballesteros-3114b916a/" target="_blank" rel="noopener noreferrer" class="text-muted transition-colors hover:text-text">LinkedIn ↗</a>
+					<a href="https://docs.google.com/document/d/1MXRKo2KKJapOG70Ydf2bWkq1aL-uaA-qlnbaygS2s2M/edit?tab=t.0" target="_blank" rel="noopener noreferrer" class="text-muted transition-colors hover:text-text">CV ↗</a>
+				</nav>
 			</div>
-			<nav class="flex flex-col gap-3 font-mono text-sm md:items-end">
-				<a href="https://github.com/GabJS10" target="_blank" rel="noopener noreferrer" class="text-muted transition-colors hover:text-accent">GitHub ↗</a>
-				<a href="https://www.linkedin.com/in/gabriel-ballesteros-3114b916a/" target="_blank" rel="noopener noreferrer" class="text-muted transition-colors hover:text-accent">LinkedIn ↗</a>
-				<a href="https://docs.google.com/document/d/1MXRKo2KKJapOG70Ydf2bWkq1aL-uaA-qlnbaygS2s2M/edit?tab=t.0" target="_blank" rel="noopener noreferrer" class="text-muted transition-colors hover:text-accent">CV ↗</a>
-			</nav>
 		</div>
-		<p class="mt-16 font-mono text-xs tracking-wide text-muted">
+		<p class="mt-10 font-mono text-xs tracking-wide text-muted">
 			© 2026 Gabriel Ballesteros — construido con Astro
 		</p>
 	</footer>

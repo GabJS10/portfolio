@@ -49,7 +49,7 @@ const {
 					const svgContent =
 						techIcons[techName.toLowerCase()] || techIcons.default;
 					return (
-						<span class="flex items-center gap-2 rounded-md border border-line bg-panel/60 py-1.5 pl-2 pr-2.5 font-mono text-[11px] tracking-wide text-muted transition-colors duration-300 hover:border-accent/40 hover:text-text">
+						<span class="flex items-center gap-2 rounded-full border border-line bg-white/[0.04] py-1.5 pl-2 pr-3 font-mono text-[11px] tracking-wide text-muted transition-colors duration-300 hover:border-accent/50 hover:text-text">
 							<span class="inline-flex h-4 w-4 items-center justify-center [&>svg]:h-full [&>svg]:w-full">
 								<Fragment set:html={svgContent} />
 							</span>
@@ -65,7 +65,7 @@ const {
 				href={url}
 				target="_blank"
 				rel="noopener noreferrer"
-				class="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-accent transition-colors hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+				class="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-gradient transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
 			>
 				VER PROYECTO
 				<span aria-hidden="true">→</span>
@@ -78,10 +78,10 @@ const {
 			href={url}
 			target="_blank"
 			rel="noopener noreferrer"
-			class="group relative block overflow-hidden rounded-xl border border-line bg-panel focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+			class="group relative block overflow-hidden rounded-2xl border border-line bg-white/[0.04] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
 		>
 			<div
-				class="pointer-events-none absolute inset-0 z-10 rounded-xl ring-1 ring-inset ring-accent/0 transition-all duration-500 group-hover:ring-accent/40"
+				class="pointer-events-none absolute inset-0 z-10 rounded-2xl ring-1 ring-inset ring-accent/0 transition-all duration-500 group-hover:ring-accent/40"
 			>
 			</div>
 			<img
