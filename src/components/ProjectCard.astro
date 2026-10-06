@@ -1,95 +1,78 @@
 ---
-import { techIcons } from "@/constants/icons";
+import { isoDate } from "@/lib/dates";
+import { techName } from "@/lib/tech";
+
 interface Props {
-	index: string;
+	id: string;
 	title: string;
 	description: string;
 	date: string;
 	image: string;
 	url: string;
 	technologies: string[];
-	reverse?: boolean;
+	showYear?: boolean;
 }
 
-const {
-	index,
-	title,
-	url,
-	date,
-	description,
-	image,
-	technologies,
-	reverse = false,
-} = Astro.props;
+const { id, title, url, date, description, image, technologies, showYear = true } = Astro.props;
+
+const iso = isoDate(date);
+const year = iso.slice(0, 4);
+const isRepo = url.includes("github.com");
 ---
 
 <article
-	class={`flex flex-col ${reverse ? "md:flex-row-reverse" : "md:flex-row"} items-center gap-10 md:gap-16`}
+	id={`obra-${id}`}
+	class="grid scroll-mt-24 gap-6 md:grid-cols-12 md:gap-x-8"
+	aria-labelledby={`titulo-${id}`}
 >
-	<div class="flex-1 space-y-5 text-center md:text-left">
-		<div
-			class="flex items-center justify-center gap-3 font-mono text-xs text-muted md:justify-start"
-		>
-			<span class="text-accent">[{index}]</span>
-			<span class="h-px w-8 bg-line"></span>
-			<span>{date}</span>
-		</div>
-
-		<h3 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-text">
-			{title}
-		</h3>
-
-		<p class="leading-relaxed text-muted">
-			{description}
-		</p>
-
-		<div class="flex flex-wrap justify-center gap-2 pt-1 md:justify-start">
-			{
-				technologies.map((techName) => {
-					const svgContent =
-						techIcons[techName.toLowerCase()] || techIcons.default;
-					return (
-						<span class="flex items-center gap-2 rounded-full border border-line bg-white/[0.04] py-1.5 pl-2 pr-3 font-mono text-[11px] tracking-wide text-muted transition-colors duration-300 hover:border-accent/50 hover:text-text">
-							<span class="inline-flex h-4 w-4 items-center justify-center [&>svg]:h-full [&>svg]:w-full">
-								<Fragment set:html={svgContent} />
-							</span>
-							{techName}
-						</span>
-					);
-				})
-			}
-		</div>
-
-		<div class="pt-2">
-			<a
-				href={url}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="inline-flex items-center gap-2 font-mono text-xs tracking-widest text-gradient transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-			>
-				VER PROYECTO
-				<span aria-hidden="true">→</span>
-			</a>
-		</div>
+	<!-- Regla de años al margen: marca solo donde cambia el año -->
+	<div class="hidden md:col-span-1 md:block" aria-hidden="true">
+		{
+			showYear && (
+				<p class="tabular -ml-px flex items-center gap-3 text-sm text-dim">
+					<span class="h-px w-3 bg-dim" />
+					{year}
+				</p>
+			)
+		}
 	</div>
 
-	<div class="w-full flex-1">
+	<!-- La obra -->
+	<a
+		href={url}
+		target="_blank"
+		rel="noopener noreferrer"
+		class="work block md:col-span-7"
+		tabindex="-1"
+		aria-hidden="true"
+	>
+		<div class="aspect-[16/10] overflow-hidden bg-wall-2 shadow-[0_40px_60px_-40px_rgb(0_0_0/0.9)]">
+			<img
+				src={image}
+				alt=""
+				loading="lazy"
+				decoding="async"
+				class="work-image h-full w-full object-cover object-top"
+			/>
+		</div>
+	</a>
+
+	<!-- Cartela -->
+	<div class="flex flex-col justify-end md:col-span-4">
+		<h3 id={`titulo-${id}`} class="text-2xl font-medium tracking-[-0.01em] text-balance text-ink">{title}</h3>
+		<p class="tabular mt-1 text-sm text-dim md:sr-only">
+			<time datetime={iso}>{year}</time>
+		</p>
+		<p class="mt-4 text-sm leading-relaxed text-dim">{technologies.map(techName).join(", ")}</p>
+		<p class="mt-4 max-w-[46ch] text-[15px] leading-relaxed text-ink/80">{description}</p>
 		<a
 			href={url}
 			target="_blank"
 			rel="noopener noreferrer"
-			class="group relative block overflow-hidden rounded-2xl border border-line bg-white/[0.04] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+			class="link-arrow mt-6 inline-flex items-center gap-1.5 self-start text-sm text-ink underline decoration-rule underline-offset-[6px] transition-colors hover:text-lamp hover:decoration-lamp"
 		>
-			<div
-				class="pointer-events-none absolute inset-0 z-10 rounded-2xl ring-1 ring-inset ring-accent/0 transition-all duration-500 group-hover:ring-accent/40"
-			>
-			</div>
-			<img
-				src={image}
-				alt={`Captura de pantalla del proyecto ${title}`}
-				loading="lazy"
-				class="w-full transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-			/>
+			{isRepo ? "Ver código" : "Visitar sitio"}<span class="sr-only"> de {title}</span>
+			<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
 		</a>
 	</div>
 </article>

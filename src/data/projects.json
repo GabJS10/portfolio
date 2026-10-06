@@ -39,21 +39,9 @@
     "description": "Un espacio para leer la Biblia según la traducción del Mons. Juan Straubinger, con sus comentarios y notas originales, pensado para la lectura diaria. Creada con Astro.",
     "image": "/images/biblia-mons-straunbinger.png",
     "link": "https://biblia-mons-straunbinger-web.vercel.app/",
-    "technologies": ["astro", "javascript"]
-  },
-  {
-    "id": "rutas-web-corprecam",
-    "date": "Ago 20, 2026",
-    "title": "Rutas Web Corprecam",
-    "description": "Una web para que posibles clientes y ciudadanía vean en un mapa por dónde circulan los recicladores de Corprecam: los recorridos (microrutas) coloreados por zona (macroruta), con sus días, horarios y las personas que los recorren. Incluye un panel admin autenticado para crear y mantener esos datos dibujando las rutas directamente sobre el mapa.",
-    "image": "/images/rutas-web-corprecam.png",
-    "link": "https://rutas-corprecam-web.vercel.app/",
     "technologies": [
-      "typescript",
-      "react",
-      "tailwindcss",
-      "leaflet",
-      "supabase"
+      "astro",
+      "javascript"
     ]
   },
   {
@@ -63,7 +51,12 @@
     "description": "Backend de preguntas y respuestas con RAG, desarrollado en FastAPI, que permite subir documentos, indexarlos y realizar consultas conversacionales sobre su contenido. Usa Supabase para almacenamiento, Redis Queue (RQ) para procesamiento en segundo plano y OpenAI para generación de respuestas, con un diseño escalable, no bloqueante y orientado a producción.",
     "link": "https://github.com/GabJS10/RAGSystem",
     "image": "/images/rag.png",
-    "technologies": ["python", "fastapi", "docker", "redis"]
+    "technologies": [
+      "python",
+      "fastapi",
+      "docker",
+      "redis"
+    ]
   },
   {
     "id": "corprecam-web",
@@ -72,24 +65,9 @@
     "description": "Pagina web de la organizacion Corprecam E.S.P. Creada con astro + tailwindcss. Cuenta con secciones de informacion, servicios, documentos y contacto.",
     "image": "/images/corprecam_img.png",
     "link": "https://corprecam-prueba.netlify.app/",
-    "technologies": ["astro", "typescript"]
-  },
-  {
-    "id": "scrapping-siigo",
-    "date": "Dec 15, 2025",
-    "title": "Scrapping Siigo-Corprecam",
-    "description": "Script de scrapping desarrollado en NodeJS para extraer informacion del sistema de la organizacion y crear Documentos soporte para Siigo.",
-    "image": "/images/playwright.png",
-    "link": "https://github.com/GabJS10/ScrappingSiigoCorprecam",
-    "technologies": ["typescript", "nodejs", "express"]
-  },
-  {
-    "id": "chat-app",
-    "date": "Jul 8, 2024",
-    "title": "Chat App",
-    "description": "ChatExpress es una aplicación de chat temporal desarrollada con React, Express y Socket.io. Permite enviar mensajes de texto y compartir imágenes, y todos los mensajes se eliminan al cerrar la sesión.",
-    "link": "https://github.com/GabJS10/ChatApp",
-    "image": "/images/chatapp.png",
-    "technologies": ["react", "typescript", "tailwind", "nestjs", "redis"]
+    "technologies": [
+      "astro",
+      "typescript"
+    ]
   }
 ]

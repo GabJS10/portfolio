@@ -22,3 +22,11 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Impeccable: artefactos locales (capturas de revisión y registros de decisión)
+.impeccable/review/
+.impeccable/questions/
+.impeccable/config.local.json
+
+# Playwright CLI
+.playwright-cli/

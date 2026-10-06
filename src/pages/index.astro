@@ -1,30 +1,22 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import SocialLink from "@/components/SocialLink.astro";
-import SectionHeader from "@/components/SectionHeader.astro";
 import ProjectCard from "@components/ProjectCard.astro";
 import { Image } from "astro:assets";
 import Foto from "@/assets/foto.jpeg";
-import { techIcons } from "@/constants/icons";
 import { getCollection } from "astro:content";
+import { isoDate } from "@/lib/dates";
+
+const CV_URL =
+	"https://docs.google.com/document/d/1MXRKo2KKJapOG70Ydf2bWkq1aL-uaA-qlnbaygS2s2M/edit?tab=t.0";
+const EMAIL = "jgabis65@gmail.com";
+const GITHUB = "https://github.com/GabJS10";
+const LINKEDIN = "https://www.linkedin.com/in/gabriel-ballesteros-3114b916a/";
 
 const navItems = [
+	{ name: "Proyectos", href: "#proyectos" },
 	{ name: "Sobre mí", href: "#sobre-mi" },
 	{ name: "Stack", href: "#stack" },
-	{ name: "Proyectos", href: "#proyectos" },
 	{ name: "Contacto", href: "#contacto" },
-	{
-		name: "CV",
-		href: "https://docs.google.com/document/d/1MXRKo2KKJapOG70Ydf2bWkq1aL-uaA-qlnbaygS2s2M/edit?tab=t.0",
-		props: { target: "_blank", rel: "noopener noreferrer" },
-	},
-];
-
-const readout = [
-	{ label: "LOC", value: "Colombia" },
-	{ label: "STACK", value: "TS · Python" },
-	{ label: "FOCUS", value: "Backend / Full-stack" },
-	{ label: "STATUS", value: "Disponible" },
 ];
 
 const facts = [
@@ -35,315 +27,222 @@ const facts = [
 ];
 
 const stackGroups = [
-	{
-		label: "Frontend",
-		items: ["react", "nextjs", "astro", "tailwind", "typescript", "javascript"],
-	},
-	{
-		label: "Backend",
-		items: ["nodejs", "express", "nestjs", "fastapi", "python"],
-	},
-	{
-		label: "Datos & Infra",
-		items: ["postgresql", "mongodb", "redis", "docker", "git"],
-	},
+	{ label: "Frontend", items: ["React", "Next.js", "Astro", "Tailwind CSS", "TypeScript", "JavaScript"] },
+	{ label: "Backend", items: ["Node.js", "Express", "NestJS", "FastAPI", "Python"] },
+	{ label: "Datos & Infra", items: ["PostgreSQL", "MongoDB", "Redis", "Docker", "Git"] },
 ];
 
-const projects = await getCollection("projects");
+// Proyectos que se exhiben, en este orden. El resto sigue en projects.json pero no se muestra.
+const featured = [
+	"yts-player",
+	"biblia-mons-straunbinger",
+	"content-creation-ia",
+	"rag-system",
+	"corprecam-web",
+];
+const collection = await getCollection("projects");
+const projects = featured.flatMap((id) => collection.filter((p) => p.id === id));
+const yearOf = (p: (typeof projects)[number]) => isoDate(p.data.date).slice(0, 4);
 ---
 
 <Layout title="Gabriel Ballesteros | Portfolio">
-	<header
-		class="fixed top-0 left-0 right-0 z-50 border-b border-line bg-ink/70 backdrop-blur-md"
+	<a
+		href="#proyectos"
+		class="sr-only z-[60] bg-lamp px-4 py-2 text-sm text-wall focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+		>Saltar a proyectos</a
 	>
-		<nav
-			class="mx-auto flex max-w-5xl flex-row items-center justify-between px-4 py-4 md:px-6"
-		>
-			<a
-				href="/"
-				class="font-mono text-sm font-medium tracking-tight text-text"
-			>
-				GAB<span class="text-gradient">JS</span>10
-			</a>
 
-			<ul
-				class="flex items-center gap-3 font-mono text-[11px] tracking-wide text-muted md:gap-1 md:rounded-full md:border md:border-line md:bg-white/[0.04] md:p-1 md:text-[13px]"
-			>
+	<header class="fixed inset-x-0 top-0 z-50 bg-wall/95">
+		<nav class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-6 px-5 sm:px-8">
+			<a href="/" class="text-sm font-medium text-ink">Gabriel Ballesteros</a>
+			<ul class="flex items-center gap-5 text-sm text-dim sm:gap-7">
 				{
-					navItems.map((item) =>
-						item.name === "CV" ? (
-							<li>
-								<a
-									{...item.props}
-									href={item.href}
-									class="accent-gradient inline-block rounded-full px-3.5 py-1.5 font-semibold text-ink transition-opacity hover:opacity-90"
-								>
-									{item.name}
-								</a>
-							</li>
-						) : (
-							<li>
-								<a
-									{...item.props}
-									href={item.href}
-									class="inline-block rounded-full transition-colors hover:text-text md:px-3.5 md:py-1.5"
-								>
-									{item.name}
-								</a>
-							</li>
-						),
-					)
+					navItems.map((item) => (
+						<li class={item.name === "Proyectos" || item.name === "Contacto" ? "" : "hidden sm:block"}>
+							<a href={item.href} class="transition-colors hover:text-ink">{item.name}</a>
+						</li>
+					))
 				}
+				<li>
+					<a href={CV_URL} target="_blank" rel="noopener noreferrer" class="text-ink transition-colors hover:text-lamp">CV</a>
+				</li>
 			</ul>
 		</nav>
 	</header>
 
-	<main class="px-4 sm:px-6">
-		<!-- HERO -->
-		<section
-			class="relative mx-auto flex min-h-screen max-w-5xl flex-col justify-center pt-28 pb-16"
-		>
-			<div class="load-seq grid items-center gap-12 md:grid-cols-[1.4fr_1fr]">
-				<div class="space-y-6 text-center md:text-left">
-					<p
-						class="font-mono text-xs tracking-widest text-accent md:text-sm"
-					>
-						> ingeniero de sistemas<span class="caret"></span>
-					</p>
-
-					<h1
-						class="font-display text-4xl font-bold leading-[1.05] tracking-tight text-text sm:text-5xl md:text-6xl"
-					>
-						Gabriel<br /><span class="text-gradient">Ballesteros</span>
+	<main>
+		<!-- Entrada -->
+		<section class="mx-auto max-w-6xl px-5 pt-32 pb-16 sm:px-8 md:pt-36 md:pb-10" aria-label="Presentación">
+			<div class="grid items-end gap-16 md:grid-cols-12 md:gap-x-8">
+				<div class="md:col-span-8">
+					<h1 class="text-[clamp(3.25rem,8.5vw,7rem)] leading-[0.95] font-light tracking-[-0.035em] text-ink">
+						Gabriel<br />Ballesteros
 					</h1>
-
-					<p class="max-w-lg text-base leading-relaxed text-muted md:text-lg">
-						Construyo <span class="text-text">software backend y full-stack</span>
-						eficiente y escalable. Convierto ideas en sistemas funcionales,
-						bien estructurados y pensados para producción.
+					<p class="mt-8 text-lg text-ink md:text-xl">Ingeniero de sistemas · <span class="whitespace-nowrap">Backend y full-stack</span></p>
+					<p class="mt-3 max-w-[52ch] text-base leading-relaxed text-dim md:text-lg">
+						Construyo software backend y full-stack eficiente y escalable. Convierto ideas en
+						sistemas funcionales, bien estructurados y pensados para producción.
 					</p>
-
-					<div
-						class="flex flex-wrap justify-center gap-3 pt-2 md:justify-start"
-					>
-						<SocialLink href="https://github.com/GabJS10" label="GitHub">
-							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36.5-8 3a10.88 10.88 0 0 0-6 0c-2.64-2.5-5.36-3.5-8-3C.5 4.5.5 6.5.5 9c-.28 1.15-.28 2.35 0 3.5A5.403 5.403 0 0 0 4 18c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-						</SocialLink>
-						<SocialLink
-							href="https://www.linkedin.com/in/gabriel-ballesteros-3114b916a/"
-							label="LinkedIn"
-						>
-							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-						</SocialLink>
-						<SocialLink href="mailto:jgabis65@gmail.com" label="Email">
-							<svg width="18" height="18" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M11 19h-6a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v6"></path><path d="M3 7l9 6l9 -6"></path><path d="M15 19l2 2l4 -4"></path></svg>
-						</SocialLink>
+					<div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 text-sm">
+						<a href={CV_URL} target="_blank" rel="noopener noreferrer" class="link-arrow inline-flex items-center gap-1.5 bg-ink px-5 py-3 font-medium text-wall transition-colors hover:bg-lamp">
+							Ver CV
+							<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+						</a>
+						<a href={`mailto:${EMAIL}`} class="text-ink underline decoration-rule underline-offset-[6px] transition-colors hover:text-lamp hover:decoration-lamp">Escribir correo</a>
+						<span class="inline-flex items-center gap-2 text-dim">
+							<span class="h-1.5 w-1.5 rounded-full bg-lamp" aria-hidden="true"></span>
+							Disponible
+						</span>
 					</div>
 				</div>
 
-				<div class="flex justify-center md:justify-end">
-					<div class="relative">
-						<div
-							class="absolute -right-2 -top-2 h-6 w-6 border-r-2 border-t-2 border-accent2"
-						>
-						</div>
-						<div
-							class="absolute -bottom-2 -left-2 h-6 w-6 border-b-2 border-l-2 border-accent"
-						>
-						</div>
-						<div class="relative h-44 w-44 md:h-56 md:w-56">
-							<div
-								class="accent-gradient absolute -inset-px rounded-xl opacity-50 blur-[3px]"
-								aria-hidden="true"
-							>
-							</div>
-							<Image
-								src={Foto}
-								alt="Gabriel Ballesteros"
-								class="relative h-full w-full rounded-xl border border-line object-cover"
-							/>
-						</div>
-					</div>
-				</div>
+				<!-- Retrato con su cartela -->
+				<figure class="work lit w-44 md:col-span-3 md:col-start-10 md:w-full md:max-w-[220px] md:justify-self-end">
+					<Image
+						src={Foto}
+						alt="Gabriel Ballesteros"
+						width={440}
+						loading="eager"
+						class="work-image aspect-[4/5] w-full object-cover shadow-[0_40px_60px_-40px_rgb(0_0_0/0.9)]"
+					/>
+					<figcaption class="mt-4 text-sm">
+						<p class="text-ink">Gabriel Ballesteros</p>
+						<p class="text-dim">Retrato · Colombia</p>
+					</figcaption>
+				</figure>
 			</div>
-
-			<!-- Signature: system readout -->
-			<dl
-				class="reveal-on-scroll mt-16 grid grid-cols-2 gap-4 font-mono text-xs md:grid-cols-4"
-			>
-				{
-					readout.map((r) => (
-						<div
-							class={`flex flex-col gap-2 rounded-2xl border p-5 ${r.label === "STATUS" ? "border-accent2/40 bg-gradient-to-br from-accent/15 to-accent2/10" : "border-line bg-white/[0.04]"}`}
-						>
-							<dt class="tracking-widest text-muted">{r.label}</dt>
-							<dd class="flex items-center gap-2 text-text">
-								{r.label === "STATUS" && (
-									<span class="status-dot inline-block h-1.5 w-1.5 rounded-full bg-accent2" />
-								)}
-								{r.value}
-							</dd>
-						</div>
-					))
-				}
-			</dl>
 		</section>
 
-		<!-- 01 · SOBRE MÍ -->
-		<section id="sobre-mi" class="mx-auto max-w-5xl scroll-mt-24 py-24 md:py-28">
-			<SectionHeader index="01" eyebrow="SOBRE MÍ" title="Ingeniero enfocado en el backend" />
-			<div class="reveal-on-scroll mt-10 grid gap-12 md:grid-cols-[1.5fr_1fr]">
-				<div class="space-y-5 leading-relaxed text-muted">
-					<p>
-						Soy ingeniero de sistemas con foco en crear soluciones
-						<span class="text-text">backend y full-stack</span> eficientes y
-						escalables. Trabajo con JavaScript, TypeScript, Python, Node.js y
-						Next.js, integrando bases de datos SQL y NoSQL según lo que cada
-						problema necesita.
-					</p>
-					<p>
-						Me interesan los sistemas bien estructurados: colas de trabajo,
-						procesamiento en segundo plano, APIs claras y arquitecturas
-						pensadas para producción. Construyo proyectos reales, aprendo
-						rápido y convierto ideas en software funcional.
-					</p>
+		<!-- La sala: proyectos -->
+		<section id="proyectos" class="mx-auto max-w-6xl scroll-mt-16 px-5 pt-10 pb-24 sm:px-8 md:pb-32" aria-labelledby="proyectos-titulo">
+			<div class="grid gap-6 border-t border-rule pt-8 md:grid-cols-12 md:gap-x-8">
+				<h2 id="proyectos-titulo" class="text-3xl font-light tracking-[-0.02em] text-ink md:col-span-7 md:col-start-2 md:text-4xl">Trabajo seleccionado</h2>
+				<p class="text-dim md:col-span-4">Una selección de proyectos recientes, entre backend y frontend.</p>
+			</div>
+
+			<div class="relative mt-16 flex flex-col gap-28 md:mt-14 md:gap-40">
+				<span class="absolute inset-y-0 left-0 hidden w-px bg-rule md:block" aria-hidden="true"></span>
+				{
+					projects.map((p, i) => (
+						<ProjectCard
+							id={p.id}
+							title={p.data.title}
+							description={p.data.description}
+							date={p.data.date}
+							image={p.data.image}
+							url={p.data.link}
+							technologies={p.data.technologies}
+							showYear={i === 0 || yearOf(p) !== yearOf(projects[i - 1])}
+						/>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- Texto de sala: sobre mí -->
+		<section id="sobre-mi" class="bg-wall-2 px-5 py-24 sm:px-8 md:py-32" aria-labelledby="sobre-mi-titulo">
+			<div class="mx-auto grid max-w-[68rem] gap-12 md:grid-cols-12 md:gap-x-8">
+				<h2 id="sobre-mi-titulo" class="text-3xl font-light tracking-[-0.02em] text-balance text-ink md:col-span-4 md:col-start-2 md:text-4xl">
+					Ingeniero enfocado en el backend
+				</h2>
+				<div class="md:col-span-6 md:col-start-7">
+					<div class="max-w-[62ch] space-y-5 text-[17px] leading-relaxed text-ink/80">
+						<p>
+							Soy ingeniero de sistemas con foco en crear soluciones backend y full-stack
+							eficientes y escalables. Trabajo con JavaScript, TypeScript, Python, Node.js y
+							Next.js, integrando bases de datos SQL y NoSQL según lo que cada problema necesita.
+						</p>
+						<p>
+							Me interesan los sistemas bien estructurados: colas de trabajo, procesamiento en
+							segundo plano, APIs claras y arquitecturas pensadas para producción. Construyo
+							proyectos reales, aprendo rápido y convierto ideas en software funcional.
+						</p>
+					</div>
+					<dl class="mt-12 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-rule pt-8 text-sm">
+						{
+							facts.map((f) => (
+								<div>
+									<dt class="text-dim">{f.label}</dt>
+									<dd class="mt-1 text-ink">{f.value}</dd>
+								</div>
+							))
+						}
+					</dl>
 				</div>
-				<dl class="space-y-0 divide-y divide-line rounded-2xl border border-line bg-white/[0.04]">
+			</div>
+		</section>
+
+		<!-- Stack -->
+		<section id="stack" class="mx-auto max-w-6xl px-5 py-24 sm:px-8 md:py-32" aria-labelledby="stack-titulo">
+			<div class="grid gap-12 md:grid-cols-12 md:gap-x-8">
+				<div class="md:col-span-4 md:col-start-2">
+					<h2 id="stack-titulo" class="text-3xl font-light tracking-[-0.02em] text-ink md:text-4xl">Herramientas de trabajo</h2>
+					<p class="mt-4 max-w-[36ch] text-dim">Las tecnologías con las que construyo, agrupadas por dónde encajan en el sistema.</p>
+				</div>
+				<div class="grid grid-cols-2 gap-10 sm:grid-cols-3 md:col-span-6 md:col-start-7">
 					{
-						facts.map((f) => (
-							<div class="flex items-center justify-between gap-4 px-5 py-3.5 font-mono text-xs">
-								<dt class="tracking-widest text-muted">{f.label}</dt>
-								<dd class="text-right text-text">{f.value}</dd>
+						stackGroups.map((g, gi) => (
+							<div class={gi === 2 ? "col-span-2 sm:col-span-1" : ""}>
+								<h3 class="text-sm text-dim">{g.label}</h3>
+								<ul class={`mt-4 space-y-2 text-ink ${gi === 2 ? "columns-2 gap-10 sm:columns-1 [&>li]:break-inside-avoid" : ""}`}>
+									{g.items.map((t) => <li>{t}</li>)}
+								</ul>
 							</div>
 						))
 					}
-				</dl>
-			</div>
-		</section>
-
-		<!-- 02 · STACK -->
-		<section id="stack" class="mx-auto max-w-5xl scroll-mt-24 py-24 md:py-28">
-			<SectionHeader
-				index="02"
-				eyebrow="STACK"
-				title="Herramientas de trabajo"
-				description="Las tecnologías con las que construyo, agrupadas por dónde encajan en el sistema."
-			/>
-			<div class="mt-10 grid gap-6 md:grid-cols-3">
-				{
-					stackGroups.map((group) => (
-						<div class="reveal-on-scroll rounded-2xl border border-line bg-white/[0.04] p-6">
-							<p class="text-gradient mb-5 font-mono text-xs tracking-widest">
-								{group.label}
-							</p>
-							<ul class="space-y-3.5">
-								{group.items.map((tech) => (
-									<li class="flex items-center gap-3">
-										<span class="inline-flex h-5 w-5 items-center justify-center [&>svg]:h-full [&>svg]:w-full">
-											<Fragment set:html={techIcons[tech] || techIcons.default} />
-										</span>
-										<span class="font-mono text-sm text-text">{tech}</span>
-									</li>
-								))}
-							</ul>
-						</div>
-					))
-				}
-			</div>
-		</section>
-
-		<!-- 03 · PROYECTOS -->
-		<section id="proyectos" class="mx-auto max-w-5xl scroll-mt-24 py-24 md:py-28">
-			<SectionHeader
-				index="03"
-				eyebrow="PROYECTOS"
-				title="Trabajo seleccionado"
-				description="Una selección de proyectos recientes, entre backend y frontend."
-			/>
-			<div class="mt-16 flex flex-col gap-24 md:gap-28">
-				{
-					projects.map((project, index) => (
-						<div class="reveal-on-scroll">
-							<ProjectCard
-								index={String(index + 1).padStart(2, "0")}
-								title={project.data.title}
-								description={project.data.description}
-								date={project.data.date}
-								image={project.data.image}
-								url={project.data.link}
-								technologies={project.data.technologies}
-								reverse={index % 2 !== 0}
-							/>
-						</div>
-					))
-				}
+				</div>
 			</div>
 		</section>
 	</main>
 
-	<!-- 04 · CONTACTO -->
-	<footer
-		id="contacto"
-		class="mx-auto max-w-5xl scroll-mt-24 px-4 py-20 sm:px-6"
-	>
-		<div
-			class="reveal-on-scroll rounded-3xl border border-accent/25 bg-gradient-to-br from-accent/12 to-accent2/[0.08] p-8 md:p-12"
-		>
-			<div class="grid gap-10 md:grid-cols-[1.5fr_1fr]">
-				<div class="space-y-5">
-					<div class="flex items-center gap-3 font-mono text-xs tracking-widest">
-						<span class="text-gradient font-medium">// 04</span>
-						<span class="h-px w-16 bg-line"></span>
-						<span class="text-muted">CONTACTO</span>
-					</div>
-					<h2 class="font-display text-3xl font-bold tracking-tight text-text md:text-4xl">
-						¿Construimos algo?
-					</h2>
-					<p class="max-w-md leading-relaxed text-muted">
-						Estoy disponible para nuevos proyectos y colaboraciones. La mejor vía
-						es el correo, pero también me encuentras en las redes.
-					</p>
-					<a
-						href="mailto:jgabis65@gmail.com"
-						class="accent-gradient inline-flex items-center gap-2 rounded-xl px-5 py-3 font-mono text-sm tracking-wide font-semibold text-ink transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-					>
-						jgabis65@gmail.com
-						<span aria-hidden="true">→</span>
-					</a>
-				</div>
-				<nav class="flex flex-col gap-3 font-mono text-sm md:items-end">
-					<a href="https://github.com/GabJS10" target="_blank" rel="noopener noreferrer" class="text-muted transition-colors hover:text-text">GitHub ↗</a>
-					<a href="https://www.linkedin.com/in/gabriel-ballesteros-3114b916a/" target="_blank" rel="noopener noreferrer" class="text-muted transition-colors hover:text-text">LinkedIn ↗</a>
-					<a href="https://docs.google.com/document/d/1MXRKo2KKJapOG70Ydf2bWkq1aL-uaA-qlnbaygS2s2M/edit?tab=t.0" target="_blank" rel="noopener noreferrer" class="text-muted transition-colors hover:text-text">CV ↗</a>
-				</nav>
+	<!-- Salida: contacto -->
+	<footer id="contacto" class="mx-auto max-w-6xl scroll-mt-16 px-5 pt-24 pb-12 sm:px-8 md:pt-32">
+		<div class="grid gap-10 border-t border-rule pt-16 md:grid-cols-12 md:gap-x-8">
+			<div class="md:col-span-10 md:col-start-2">
+				<h2 class="text-[clamp(2.75rem,6.5vw,5.5rem)] leading-[1] font-light tracking-[-0.035em] text-ink">¿Construimos algo?</h2>
+				<p class="mt-6 max-w-[48ch] text-lg leading-relaxed text-dim">
+					Estoy disponible para nuevos proyectos y colaboraciones. La mejor vía es el correo, pero
+					también me encuentras en las redes.
+				</p>
+				<a href={`mailto:${EMAIL}`} class="mt-10 inline-block text-[clamp(1.35rem,3.2vw,2.25rem)] font-light break-all text-ink underline decoration-rule decoration-1 underline-offset-[10px] transition-colors hover:text-lamp hover:decoration-lamp">
+					{EMAIL}
+				</a>
+				<ul class="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm">
+					{
+						[
+							{ name: "GitHub", href: GITHUB },
+							{ name: "LinkedIn", href: LINKEDIN },
+							{ name: "CV", href: CV_URL },
+						].map((l) => (
+							<li>
+								<a href={l.href} target="_blank" rel="noopener noreferrer" class="link-arrow inline-flex items-center gap-1.5 text-ink transition-colors hover:text-lamp">
+									{l.name}
+									<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>
+								</a>
+							</li>
+						))
+					}
+				</ul>
 			</div>
 		</div>
-		<p class="mt-10 font-mono text-xs tracking-wide text-muted">
-			© 2026 Gabriel Ballesteros — construido con Astro
-		</p>
+		<p class="mt-24 text-sm text-dim">© 2026 Gabriel Ballesteros — construido con Astro</p>
 	</footer>
 </Layout>
 
 <script>
-	const prefersReduced = window.matchMedia(
-		"(prefers-reduced-motion: reduce)",
-	).matches;
-	const els = document.querySelectorAll(".reveal-on-scroll");
+	// Luz de sala: la obra que entra en la vista se ilumina; las demás quedan en penumbra.
+	const works = document.querySelectorAll<HTMLElement>("main article .work");
+	const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-	if (prefersReduced) {
-		els.forEach((el) => el.classList.add("visible"));
+	if (reduced || !("IntersectionObserver" in window)) {
+		works.forEach((w) => w.classList.add("lit"));
 	} else {
 		const observer = new IntersectionObserver(
 			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						entry.target.classList.add("visible");
-						observer.unobserve(entry.target);
-					}
-				});
+				entries.forEach((entry) => entry.target.classList.toggle("lit", entry.isIntersecting));
 			},
-			{ threshold: 0.12 },
+			{ rootMargin: "-25% 0px -25% 0px" },
 		);
-		els.forEach((el) => observer.observe(el));
+		works.forEach((w) => observer.observe(w));
 	}
 </script>

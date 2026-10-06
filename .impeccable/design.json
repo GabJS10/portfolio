@@ -1,0 +1,295 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-06T00:00:00Z",
+  "title": "Design System: Gabriel Ballesteros | Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "wall": {
+        "role": "neutral",
+        "displayName": "Matte Wall",
+        "canonical": "oklch(16.0% 0.002 286.2)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242425",
+          "#3f3f41",
+          "#5d5d5f",
+          "#7d7d7e",
+          "#9e9ea0",
+          "#c4c4c5",
+          "#eeeef0"
+        ]
+      },
+      "wall-2": {
+        "role": "neutral",
+        "displayName": "Adjoining Room Wall",
+        "canonical": "oklch(19.2% 0.002 286.2)",
+        "tonalRamp": [
+          "#0b0b0c",
+          "#242425",
+          "#3f3f41",
+          "#5d5d5f",
+          "#7d7d7e",
+          "#9e9e9f",
+          "#c4c4c5",
+          "#eeeef0"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Label Ink",
+        "canonical": "oklch(93.9% 0.007 97.4)",
+        "tonalRamp": [
+          "#0c0b08",
+          "#252420",
+          "#41403c",
+          "#5e5e59",
+          "#7e7d79",
+          "#9f9e9a",
+          "#c5c4bf",
+          "#f0eee9"
+        ]
+      },
+      "dim": {
+        "role": "neutral",
+        "displayName": "Warm Gray",
+        "canonical": "oklch(63.3% 0.007 97.4)",
+        "tonalRamp": [
+          "#0c0b08",
+          "#252420",
+          "#41403b",
+          "#5f5e59",
+          "#7e7d78",
+          "#9f9e99",
+          "#c5c4bf",
+          "#f0efe9"
+        ]
+      },
+      "lamp": {
+        "role": "primary",
+        "displayName": "Gallery Lamp",
+        "canonical": "oklch(79.8% 0.120 83.4)",
+        "tonalRamp": [
+          "#1f1607",
+          "#3a2a0f",
+          "#5d3600",
+          "#7d5500",
+          "#9f7607",
+          "#c2973b",
+          "#e9bd63",
+          "#ffe88e"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgb(236 235 230 / 0.12)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name in the entrance, two lines."
+      },
+      "display-closing": {
+        "displayName": "Display, closing",
+        "purpose": "The contact invitation in the footer."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles on mobile."
+      },
+      "headline-md": {
+        "displayName": "Headline (md+)",
+        "purpose": "Section titles from 768px."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Work titles on wall labels; the only medium-weight heading."
+      },
+      "body-lead": {
+        "displayName": "Lead",
+        "purpose": "Role line and intro/contact paragraphs (1.25rem from md for the role line)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "About-wall paragraphs at 80% ink, max 62ch."
+      },
+      "body-label": {
+        "displayName": "Label body",
+        "purpose": "Work descriptions on wall labels at 80% ink, max 46ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Nav, technique lines, metadata, captions, link text; tabular numerals for years."
+      }
+    },
+    "shadows": [
+      {
+        "name": "hang",
+        "value": "0 40px 60px -40px rgb(0 0 0 / 0.9)",
+        "purpose": "Soft shadow falling below every work image and the portrait."
+      },
+      {
+        "name": "lamp-pool",
+        "value": "radial-gradient(ellipse 50% 70% at 50% 75%, rgb(226 182 92 / 0.17), transparent)",
+        "purpose": "Warm light above a lit work (pseudo-element, inset -45% -10% 85% -10%; -45% 0 85% 0 under 768px)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "All signature transitions."
+      },
+      {
+        "name": "room-light",
+        "value": "filter/opacity 1.2s ease-out-expo; rest brightness(0.72) saturate(0.8); lit when intersecting rootMargin -25% 0px -25% 0px",
+        "purpose": "The single signature motion. All works lit, no transition, under prefers-reduced-motion."
+      },
+      {
+        "name": "arrow-nudge",
+        "value": "transform 0.3s ease-out-expo; translate(2px, -2px) on hover",
+        "purpose": "External-link arrow response."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single filled action (Ver CV): ink block, lamp on hover, arrow nudge.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">Ver CV <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M7 17 17 7M8 7h9v9\"/></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 6px; background: #ecebe6; color: #0d0d0e; padding: 12px 20px; font-family: \"Hanken Grotesk Variable\", system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; text-decoration: none; border: none; border-radius: 0; transition: background-color 0.15s; } .ds-btn-primary:hover { background: #e2b65c; } .ds-btn-primary:focus-visible { outline: 1px solid #e2b65c; outline-offset: 4px; } .ds-btn-primary svg { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover svg { transform: translate(2px, -2px); }"
+    },
+    {
+      "name": "Underlined Arrow Link",
+      "kind": "custom",
+      "refersTo": "link-underlined",
+      "description": "Text link with hairline underline; text and underline turn lamp on hover.",
+      "html": "<a href=\"#\" class=\"ds-link\">Visitar sitio <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M7 17 17 7M8 7h9v9\"/></svg></a>",
+      "css": ".ds-link { display: inline-flex; align-items: center; gap: 6px; font-family: \"Hanken Grotesk Variable\", system-ui, sans-serif; font-size: 0.875rem; color: #ecebe6; text-decoration: underline; text-decoration-color: rgb(236 235 230 / 0.12); text-underline-offset: 6px; transition: color 0.15s, text-decoration-color 0.15s; } .ds-link:hover { color: #e2b65c; text-decoration-color: #e2b65c; } .ds-link:focus-visible { outline: 1px solid #e2b65c; outline-offset: 4px; } .ds-link svg { transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-link:hover svg { transform: translate(2px, -2px); }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-bar",
+      "description": "Fixed 64px bar on the wall; dim items brighten to ink, CV brightens to lamp.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-name\">Gabriel Ballesteros</a><ul><li><a href=\"#\">Proyectos</a></li><li><a href=\"#\">Sobre mí</a></li><li><a href=\"#\">Stack</a></li><li><a href=\"#\">Contacto</a></li><li><a href=\"#\" class=\"ds-nav-cv\">CV</a></li></ul></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 32px; background: rgb(13 13 14 / 0.9); font-family: \"Hanken Grotesk Variable\", system-ui, sans-serif; font-size: 0.875rem; } .ds-nav ul { display: flex; gap: 28px; list-style: none; margin: 0; padding: 0; } .ds-nav a { color: #8b8a85; text-decoration: none; transition: color 0.15s; } .ds-nav a:hover { color: #ecebe6; } .ds-nav .ds-nav-name { color: #ecebe6; font-weight: 500; } .ds-nav .ds-nav-cv { color: #ecebe6; } .ds-nav .ds-nav-cv:hover { color: #e2b65c; } .ds-nav a:focus-visible { outline: 1px solid #e2b65c; outline-offset: 4px; }"
+    },
+    {
+      "name": "Wall Label",
+      "kind": "custom",
+      "refersTo": "wall-label-title",
+      "description": "The cartela beside each work: title, technique by display name, description, one link. No box.",
+      "html": "<div class=\"ds-label\"><h3>Rutas Web Corprecam</h3><p class=\"ds-label-tech\">TypeScript, React, Tailwind CSS, Leaflet, Supabase</p><p class=\"ds-label-desc\">Una web para que posibles clientes y ciudadanía vean en un mapa por dónde circulan los recicladores.</p><a href=\"#\">Visitar sitio <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M7 17 17 7M8 7h9v9\"/></svg></a></div>",
+      "css": ".ds-label { font-family: \"Hanken Grotesk Variable\", system-ui, sans-serif; background: #0d0d0e; padding: 24px; max-width: 360px; } .ds-label h3 { margin: 0; font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em; color: #ecebe6; text-wrap: balance; } .ds-label-tech { margin: 16px 0 0; font-size: 0.875rem; line-height: 1.625; color: #8b8a85; } .ds-label-desc { margin: 16px 0 0; font-size: 15px; line-height: 1.625; color: rgb(236 235 230 / 0.8); max-width: 46ch; } .ds-label a { margin-top: 24px; display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem; color: #ecebe6; text-decoration: underline; text-decoration-color: rgb(236 235 230 / 0.12); text-underline-offset: 6px; } .ds-label a:hover { color: #e2b65c; text-decoration-color: #e2b65c; }"
+    },
+    {
+      "name": "Work (room light)",
+      "kind": "custom",
+      "refersTo": "work-frame",
+      "description": "16:10 frame on wall-2 with hang shadow; dim at rest, lamp pool and full brightness when lit (hover stands in for viewport-centre here).",
+      "html": "<div class=\"ds-work-wrap\"><div class=\"ds-work\"><div class=\"ds-work-frame\"><div class=\"ds-work-image\"></div></div></div></div>",
+      "css": ".ds-work-wrap { background: #0d0d0e; padding: 80px 32px 32px; } .ds-work { position: relative; isolation: isolate; width: 320px; } .ds-work::before { content: ''; position: absolute; inset: -45% -10% 85% -10%; z-index: -1; pointer-events: none; background: radial-gradient(ellipse 50% 70% at 50% 75%, rgb(226 182 92 / 0.17), transparent); opacity: 0; transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1); } .ds-work-frame { aspect-ratio: 16 / 10; overflow: hidden; background: #141415; box-shadow: 0 40px 60px -40px rgb(0 0 0 / 0.9); } .ds-work-image { width: 100%; height: 100%; background: linear-gradient(160deg, #2c4a3e, #c9b98f); filter: brightness(0.72) saturate(0.8); transition: filter 1.2s cubic-bezier(0.16, 1, 0.3, 1); } .ds-work:hover::before { opacity: 1; } .ds-work:hover .ds-work-image { filter: none; } @media (prefers-reduced-motion: reduce) { .ds-work::before { opacity: 1; transition: none; } .ds-work-image { filter: none; transition: none; } }"
+    },
+    {
+      "name": "Year Rule",
+      "kind": "custom",
+      "refersTo": "wall-label-meta",
+      "description": "Margin hairline with a tick and tabular year only where the year changes.",
+      "html": "<div class=\"ds-years\"><p><span></span>2026</p><div style=\"height:120px\"></div><div style=\"height:120px\"></div><p><span></span>2025</p><div style=\"height:120px\"></div></div>",
+      "css": ".ds-years { position: relative; font-family: \"Hanken Grotesk Variable\", system-ui, sans-serif; font-size: 0.875rem; color: #8b8a85; font-variant-numeric: tabular-nums; padding: 16px 0; background: #0d0d0e; border-left: 1px solid rgb(236 235 230 / 0.12); } .ds-years p { display: flex; align-items: center; gap: 12px; margin: 0 0 0 -1px; } .ds-years p span { display: block; width: 12px; height: 1px; background: #8b8a85; }"
+    },
+    {
+      "name": "Availability Point",
+      "kind": "chip",
+      "refersTo": "wall-label-meta",
+      "description": "6px lamp point before Disponible; the one resting lamp, because availability is a state.",
+      "html": "<span class=\"ds-avail\"><span class=\"ds-avail-dot\" aria-hidden=\"true\"></span>Disponible</span>",
+      "css": ".ds-avail { display: inline-flex; align-items: center; gap: 8px; font-family: \"Hanken Grotesk Variable\", system-ui, sans-serif; font-size: 0.875rem; color: #8b8a85; } .ds-avail-dot { width: 6px; height: 6px; border-radius: 9999px; background: #e2b65c; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Sala de exposición",
+    "overview": "**Creative North Star: \"Sala de exposición\"**\n\nThe site is a dimly lit exhibition room. Each shipped project hangs on a matte near-black wall as a single work, with a small, exact wall label beside it: title, year, technique (the stack), a short description, one link. The interface recedes; the work and its label carry everything. There is one light in the room, and it falls only on what is active.\n\nThe system is deliberately minimalist. There are no containers around content, no cards, no rounded corners, no ornament, no stencil or display-novelty type, and no icons other than a single diagonal arrow. Structure comes from a shared twelve-column grid, generous empty wall, and hairline rules. Hierarchy comes from scale and weight inside one grotesk family, light at display size.\n\nThe dark base is permanent. The \"dark + neon + glass cards\" developer portfolio is the confirmed anti-reference: this room is matte, warm-gray, and lit by one warm lamp, not glowing.",
+    "keyCharacteristics": [
+      "Matte near-black wall, off-white label ink, warm gray secondary text, one warm lamp tone.",
+      "One family, Hanken Grotesk: light (300) at display and headline scale, medium (500) for work titles, regular for labels and body.",
+      "Hairlines only; zero radius; no cards or boxes around text.",
+      "Room lighting is the single signature motion: the work in the viewport's centre band is lit, the rest wait in half-light.",
+      "A margin year rule ticks only where the year changes; works hang newest first."
+    ],
+    "rules": [
+      {
+        "name": "The One Light Rule",
+        "body": "`lamp` marks only the active: lit work, hover, the Disponible point, focus, selection. If an element is at rest and not a state, it is not lamp-colored.",
+        "section": "colors"
+      },
+      {
+        "name": "The Always-Dark Rule",
+        "body": "The wall is always dark. There is no light theme and no light section; the lightest surface in the system is `wall-2`.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Family Rule",
+        "body": "Hanken Grotesk is the only typeface. Hierarchy is made by size and weight (300 / 400 / 500), never by a second family, a stencil, or a novelty display face.",
+        "section": "typography"
+      },
+      {
+        "name": "The Light Display Rule",
+        "body": "Anything at headline size or larger is weight 300 with negative tracking. Weight 500 is reserved for work titles and the short nav/CTA strings.",
+        "section": "typography"
+      },
+      {
+        "name": "The Display Name Rule",
+        "body": "Technologies appear by their display name (\"Node.js\", \"Tailwind CSS\", \"PostgreSQL\"), joined with commas in warm gray. Never raw lowercase ids, never badges or logos.",
+        "section": "typography"
+      },
+      {
+        "name": "The Year Rule",
+        "body": "Works hang newest first. A 1px `rule` hairline runs down the left margin of the room (desktop only), and a 12px `dim` tick with the year in tabular numerals appears only where the year changes. On mobile the rule is hidden and each label shows its year under the title.",
+        "section": "layout"
+      },
+      {
+        "name": "The Room Light Rule",
+        "body": "The only signature motion. A work whose frame enters the centre half of the viewport is lit: lamp pool on, image at full brightness. Every other work sits in half-light at `brightness(0.72) saturate(0.8)`. Transitions run 1.2s on an expo-out curve. Under `prefers-reduced-motion` (or without IntersectionObserver) every work is lit and nothing transitions. The portrait is permanently lit.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No-Glow Rule",
+        "body": "Light is warm, low, and diffuse. No neon, no colored glows on edges, no glass panels.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** keep the wall dark (`wall`, with `wall-2` as the only step up).",
+      "**Do** reserve `lamp` for active states: lit work, hover, Disponible, focus, selection.",
+      "**Do** set every headline-scale line in Hanken Grotesk at weight 300 with negative tracking.",
+      "**Do** hang new projects through the data file only; the room sorts newest first and ticks the year rule only where the year changes.",
+      "**Do** show technologies by display name, comma-joined, in `dim`.",
+      "**Do** give every work the 16:10 frame, hang shadow, and room light; keep everything lit under reduced motion.",
+      "**Do** separate sections with 1px `rule` hairlines and empty wall."
+    ],
+    "donts": [
+      "**Don't** put content in cards, boxes, panels, or bordered containers.",
+      "**Don't** use any corner radius.",
+      "**Don't** add icons, logos, or badges; the diagonal arrow is the only glyph.",
+      "**Don't** introduce a second typeface, a stencil face, or ornament.",
+      "**Don't** add a light theme or a light section.",
+      "**Don't** use neon, glow edges, or glass panels (the \"dark + neon + glass cards\" portfolio is the anti-reference).",
+      "**Don't** add motion beyond the room light and the arrow nudge."
+    ]
+  }
+}
