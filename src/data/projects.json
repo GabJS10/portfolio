@@ -1,5 +1,21 @@
 [
   {
+    "id": "yts-player",
+    "title": "YTS Player",
+    "date": "Oct 06, 2026",
+    "description": "App de escritorio estilo Netflix para explorar el catálogo de YTS (~77.5k películas) y reproducirlas en streaming directamente desde el torrent mientras se descargan, con opción de guardarlas en una biblioteca local. Subtítulos en español automáticos vía OpenSubtitles, trailers, 'Mi lista' y 'Continuar viendo'. Núcleo en Rust (motor torrent librqbit + servidor HTTP local con Range) y UI en React sobre Tauri 2. Disponible para Linux (.deb, .rpm, AppImage) y Windows 10/11.",
+    "link": "https://yts-player.netlify.app",
+    "image": "/images/yts-player.png",
+    "technologies": [
+      "rust",
+      "tauri",
+      "typescript",
+      "react",
+      "tailwindcss",
+      "sqlite"
+    ]
+  },
+  {
     "id": "content-creation-ia",
     "title": "Content Creation IA",
     "date": "April 20, 2025",
