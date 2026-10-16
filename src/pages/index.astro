@@ -38,7 +38,6 @@ const featured = [
 	"biblia-mons-straunbinger",
 	"content-creation-ia",
 	"rag-system",
-	"corprecam-web",
 ];
 const collection = await getCollection("projects");
 const projects = featured.flatMap((id) => collection.filter((p) => p.id === id));

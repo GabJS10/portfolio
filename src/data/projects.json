@@ -57,17 +57,5 @@
       "docker",
       "redis"
     ]
-  },
-  {
-    "id": "corprecam-web",
-    "date": "Dec 22, 2025",
-    "title": "Corprecam web",
-    "description": "Pagina web de la organizacion Corprecam E.S.P. Creada con astro + tailwindcss. Cuenta con secciones de informacion, servicios, documentos y contacto.",
-    "image": "/images/corprecam_img.png",
-    "link": "https://corprecam-prueba.netlify.app/",
-    "technologies": [
-      "astro",
-      "typescript"
-    ]
   }
 ]
