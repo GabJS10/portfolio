@@ -1,5 +1,21 @@
 [
   {
+    "id": "atril",
+    "title": "Atril",
+    "date": "Oct 16, 2026",
+    "description": "Lector de PDF de escritorio, minimalista y ligero, pensado para leer libros. La biblioteca es la pantalla de inicio: seguir leyendo, favoritos y colecciones (\"Salas\"), carpetas vigiladas y libros reconocidos por su contenido, así que mover o renombrar un archivo conserva su progreso. Recuerda la posición exacta de cada libro y guarda los subrayados y notas al crearlos, exportables a Markdown, sin modificar nunca el PDF. Motor de PDF nativo en Rust (MuPDF) con visor virtualizado, búsqueda, índice y papel normal, sepia y noche. UI en React sobre Tauri 2. Disponible para Linux (.deb, AppImage) y Windows 10/11.",
+    "link": "https://github.com/GabJS10/atril",
+    "image": "/images/atril.png",
+    "technologies": [
+      "rust",
+      "tauri",
+      "typescript",
+      "react",
+      "tailwindcss",
+      "sqlite"
+    ]
+  },
+  {
     "id": "yts-player",
     "title": "YTS Player",
     "date": "Oct 06, 2026",
